@@ -279,24 +279,28 @@ from Employees;
 -- select * from Employees;
 
 -- 1. Disabling AutoCommit :
-
  set autocommit = 0;
  
 --  2) ROLLBACK — Revert Changes to the Last Safe Point 
-
  delete from employees where Emp_id = 30;
- 
  ROLLBACK;
  select * from employees;
  
- --  2. COMMIT — Save Changes to the Database
-
+ --  3. COMMIT — Save Changes to the Database
 delete from employees where Emp_id = 30;
- 
  commit;
  select * from employees;
  
 --  4. Enabling AutoCommit Again 
-
 set autocommit = 1;
+
+-- MySQL Transactions and AutoCommit example
+set autocommit =0;          -- 1. Disabling AutoCommit :
+update employees set salary = '75000.00', email_id = 'soumik@gmail.com' where emp_id = 4; -- update salary , email_id where id = 4.
+rollback;                   --  2) ROLLBACK — Revert Changes to the Last Safe Point 
+select * from employees;
+update employees set salary = '75000.00', email_id = 'soumik@gmail.com' where emp_id = 4; -- again update salary , email_id where id = 4.
+commit;                     --  3. COMMIT — Save Changes to the Database
+select * from employees;     
+set autocommit =1;          --  4. Enabling AutoCommit Again
 
