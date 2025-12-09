@@ -37,3 +37,11 @@ insert into users (username, email, gender, date_of_birth , user_salary) values
 -- Add DEFAULT using ALTER TABLE
 alter table users  add column is_active boolean default true ;
 
+select * from users;
+
+-- Auto Increment - change the starting value of AUTO_INCREMENT using:
+alter table users  auto_increment = 1000;
+insert into users (username, email, gender, date_of_birth , user_salary) values 
+('sumit', 'ananya@example.com', 'Female', '1998-11-23', 72000.00);
+
+

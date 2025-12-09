@@ -304,3 +304,12 @@ commit;                     --  3. COMMIT — Save Changes to the Database
 select * from employees;     
 set autocommit =1;          --  4. Enabling AutoCommit Again
 
+
+--- Foreign Keys in MySQL
+
+use User_details;
+select * from employees;
+--  for foregin key we have create empaddress table and with foregin key we linked this employees and empaddress tables.
+-- foregin key deletetion example
+delete from employees where emp_id =  27 ; --  Delete id = 27 related rows data in presents(Employees) and child(empaddress) table
+
