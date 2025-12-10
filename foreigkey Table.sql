@@ -57,3 +57,8 @@ alter table empaddress drop foreign key forkey;
 alter table empaddress add constraint forkey foreign key(emp_id) references employees(emp_id) on delete cascade;
 
 select * from empaddress;
+
+-- ON DELETE Option Behavior
+-- CASCADE    -   Deletes all related rows in child table
+-- SET NULL   -   Sets the foreign key to NULL in the child table
+-- RESTRICT   -   Prevents deletion of parent if child exists (default)

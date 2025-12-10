@@ -313,3 +313,28 @@ select * from employees;
 -- foregin key deletetion example
 delete from employees where emp_id =  27 ; --  Delete id = 27 related rows data in presents(Employees) and child(empaddress) table
 
+-- SQL JOINs in MySQL
+use user_details;
+select * from empaddress;
+select * from employees;
+-- 1. INNER JOIN - Returns only the matching rows from both tables.
+
+select employees.Emp_name , employees.Gender, empaddress.city, empaddress.state 
+from employees inner join empaddress 
+on employees.emp_id = empaddress.emp_id ;
+
+-- 2. LEFT JOIN - All rows from left table + matching from right.
+-- Returns all rows from the left table(employees), and matching rows from the right table(empaddresses). If no match is found, NULLs are returned.
+ 
+select Employees.Emp_name, employees.salary, employees.date_of_birth , empaddress.city , empaddress.id as addressid 
+from employees left join empaddress 
+on employees.emp_id = empaddress.emp_id;
+
+-- 2. RIGHT JOIN All rows from right table + matching from left
+-- Returns all rows from the right table(empaddress),and matching rows from the left table(employees). If no match is found, NULLs are returned.
+
+select Employees.Emp_name, employees.gender, employees.email_id , empaddress.city , empaddress.id as addressid 
+from employees right join empaddress 
+on employees.emp_id = empaddress.emp_id;
+
+
