@@ -313,11 +313,14 @@ select * from employees;
 -- foregin key deletetion example
 delete from employees where emp_id =  27 ; --  Delete id = 27 related rows data in presents(Employees) and child(empaddress) table
 
+
 -- SQL JOINs in MySQL
 use user_details;
 select * from empaddress;
 select * from employees;
+
 -- 1. INNER JOIN - Returns only the matching rows from both tables.
+-- Note: emp_id is a foreign key that reference employees.emp_id .
 
 select employees.Emp_name , employees.Gender, empaddress.city, empaddress.state 
 from employees inner join empaddress 
@@ -330,11 +333,54 @@ select Employees.Emp_name, employees.salary, employees.date_of_birth , empaddres
 from employees left join empaddress 
 on employees.emp_id = empaddress.emp_id;
 
--- 2. RIGHT JOIN All rows from right table + matching from left
+-- 3. RIGHT JOIN All rows from right table + matching from left
 -- Returns all rows from the right table(empaddress),and matching rows from the left table(employees). If no match is found, NULLs are returned.
 
 select Employees.Emp_name, employees.gender, employees.email_id , empaddress.city , empaddress.id as addressid 
 from employees right join empaddress 
 on employees.emp_id = empaddress.emp_id;
 
+
+-- SQL UNION and UNION ALL joins
+-- Step 1: Create the admin_users Table
+
+use User_details;
+select * from employees ;
+select * from admin_users;
+
+-- Step 1 : Use UNION to Combine Data - This returns a single list of unique names from both tables.
+select Emp_name from employees
+union
+select name from admin_users;
+
+-- UNION ALL Example
+select Emp_name from employees
+union all
+select Name from admin_users;
+
+-- Using More Than One Column
+
+select Emp_name,gender, salary from employees
+union
+select name , gender , salary from admin_users;
+
+select Emp_name,gender, salary from employees
+union all
+select name , gender , salary from admin_users;
+
+-- Adding separate roles
+select Emp_name , salary , 'users' as role from employees 
+union 
+select Name, salary , 'admin' as role from admin_users;
+
+select Emp_name , salary , 'users' as role from employees 
+union  all
+select Name, salary , 'admin' as role from admin_users;
+
+-- Using Order By with UNION
+
+select Emp_name , salary , 'users' as role from employees  
+union  
+select name, salary, 'admin' as role from admin_users 
+order by salary desc ;
 
