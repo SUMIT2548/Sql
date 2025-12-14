@@ -384,3 +384,5 @@ union
 select name, salary, 'admin' as role from admin_users 
 order by salary desc ;
 
+-- UNION      -   Combines results, removes duplicates
+-- UNION ALL  -   Combines results, keeps duplicates
